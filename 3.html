@@ -1,0 +1,2028 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLearn: Belajar Ekonomi Berkelanjutan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --body-bg: #fdfdff;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-light: linear-gradient(135deg, #f5f7fa 0%, #e9eefc 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            background-color: var(--body-bg);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+        section {
+            padding: 3rem 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .navbar .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .navbar .logo:hover {
+            transform: scale(1.05);
+        }
+        .navbar .logo i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .navbar .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .navbar .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+	#beranda {
+            background: linear-gradient(-45deg, #fdfbfb, #ebedee, #eef2f3, #dfe9f3);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+            position: relative;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+	.shape {
+            position: absolute;
+            opacity: 0.6; 
+            filter: blur(60px); 
+            mix-blend-mode: multiply; 
+            animation: liquidMove 20s infinite linear;
+            will-change: border-radius, transform;
+        }
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent-color);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--primary-color);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            bottom: 10%;
+            left: 15%;
+            animation-delay: 5s;
+        }
+        @keyframes liquidMove {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg); }
+            33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(50px, -30px) rotate(120deg); }
+            66% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(-20px, 20px) rotate(240deg); }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes swing3D {
+            0% { transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) translateY(0); }
+            50% { transform: perspective(1000px) rotateY(5deg) rotateX(-2deg) translateY(-15px); }
+            100% { transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) translateY(0); }
+        }
+        
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+            50% { transform: translateY(-12px); box-shadow: 0 20px 30px rgba(0,0,0,0.15); }
+        }
+        @keyframes iconLive {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+            50% { transform: scale(1.2) rotate(5deg); filter: brightness(1.2); }
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+            margin-top: 0; 
+        }
+       .hero-text h1 {
+            font-size: 3rem; 
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.8rem; 
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+	.hero-text h1 .highlight {
+            background: linear-gradient(to right, #007bff, #00c6ff, #007bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            position: relative;
+            display: inline-block;
+            animation: textFlow 3s linear infinite;
+            font-weight: 800;
+        }
+
+        @keyframes textFlow {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes textShine {
+            from { text-shadow: 0 0 10px rgba(0, 123, 255, 0); }
+            to { text-shadow: 0 0 20px rgba(0, 123, 255, 0.4); }
+        }
+        .hero-text h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 193, 7, 0.3);
+            z-index: -1;
+            animation: expandWidth 1.5s ease-out;
+        }
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 100%; }
+        }.hero-text .subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem; 
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .hero-buttons .btn-primary {
+            box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+            animation: btnPulse 2s infinite;
+        }
+
+        @keyframes btnPulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
+        .hero-image {
+            animation: zoomIn 1s ease-out;
+            position: relative;
+        }
+	.hero-image img {
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            display: block;
+            
+            aspect-ratio: 1 / 1; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            
+            border: 8px solid rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+            background-color: #fff;
+            
+            animation: spinRight 25s linear infinite;
+        }
+
+        @keyframes spinRight {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes heroAlive {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+                box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(2deg) scale(1.02); 
+                box-shadow: 0 40px 70px rgba(102, 126, 234, 0.2);
+            }
+        }
+        .hero-image:hover img {
+            transform: scale(1.03) rotate(1deg);
+        }
+        @keyframes floatElement {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .mouse-trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.25);
+        }
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-accent {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border-color: var(--accent-color);
+        }
+        .btn-accent:hover {
+            background: #ffcd2b;
+            border-color: #ffcd2b;
+            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.25);
+        }
+        #pendahuluan {
+            background: var(--gradient-light); 
+            position: relative;
+            background-image: radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            animation: none;
+        }
+
+        .feature-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color); 
+            border-left: none; 
+            position: relative;
+            z-index: 2;
+            text-align: center; 
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: none; 
+        }
+
+        @keyframes bgRoll {
+            0% { background-position: 0 0; }
+            100% { background-position: -40px -40px; }
+        }
+        
+        @keyframes iconRoll {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+        
+        @keyframes cardPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+            50% { transform: scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        }
+        .pendahuluan-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .pendahuluan-text {
+            animation: fadeInUp 1s ease-out;
+        }
+        .pendahuluan-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        .pendahuluan-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        .pendahuluan-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+	.feature-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card.show {
+            animation: cardPulse 4s infinite ease-in-out !important; 
+        }
+        
+        .feature-card.show:nth-child(1) { animation-delay: 0s; }
+        .feature-card.show:nth-child(2) { animation-delay: 1s; }
+        .feature-card.show:nth-child(3) { animation-delay: 2s; }
+        .feature-card.show:nth-child(4) { animation-delay: 0.5s; }
+        
+        .feature-card.show {
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+        
+        .feature-card.show:nth-child(1) { animation-delay: 0s; animation-duration: 4s; }
+        .feature-card.show:nth-child(2) { animation-delay: 1.5s; animation-duration: 4.5s; }
+        .feature-card.show:nth-child(3) { animation-delay: 0.5s; animation-duration: 4.2s; }
+        .feature-card.show:nth-child(4) { animation-delay: 2s; animation-duration: 3.8s; }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+	.feature-card i {
+            font-size: 2.5rem; 
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            
+            animation: iconRoll 8s linear infinite; 
+        }
+        
+        .feature-card:hover i {
+            animation-play-state: paused;
+            color: var(--accent-color);
+        }
+        .feature-card:nth-child(odd) i { animation-duration: 3s; }
+        .feature-card:nth-child(even) i { animation-duration: 4s; }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        #materi {
+            background: #fff;
+            position: relative;
+            background-image: radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--dark-color);
+            font-weight: 700;
+        }
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .materi-card {
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .materi-card:hover {
+            transform: translateY(-15px) scale(1.03) rotateZ(-1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .materi-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .materi-card:hover .materi-card-bg {
+            transform: scale(1.1);
+            filter: brightness(1.2) contrast(1.1);
+        }
+        .materi-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            transition: background 0.4s ease;
+        }
+        .materi-card:hover .materi-card-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+        }
+        .materi-card-overlay i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .materi-card:hover .materi-card-overlay i {
+            transform: translateY(-8px) scale(1.1);
+            color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+        }
+        .materi-card-overlay h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            transition: transform 0.3s ease;
+        }
+        .materi-card:hover .materi-card-overlay h3 {
+            transform: translateY(-5px);
+        }
+        .materi-card .card-action-btn {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(60px);
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .materi-card:hover .card-action-btn {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s ease-out;
+            overflow: hidden;
+        }
+        .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            margin: 0;
+        }
+        .close-btn {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: var(--accent-color);
+        }
+        .modal-body {
+            padding: 2rem;
+        }
+        .modal-tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 1.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content h3 {
+            color: var(--dark-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .tab-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .tab-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .tab-content ul li {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .tab-content ul li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .tab-content ul li i {
+            color: var(--primary-color);
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        .tab-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .image-caption {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            width: 100%;
+            display: block;
+        }
+        .list-container {
+            margin: 1.5rem 0;
+        }
+        .list-item {
+            background: var(--light-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .list-item-title {
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        .list-item-description {
+            text-align: justify;
+        }
+	#kuis {
+            background: var(--gradient-light);
+            position: relative;
+            padding-top: 120px; 
+            padding-bottom: 50px; 
+            background-image: radial-gradient(circle at 80% 10%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 20% 90%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+            min-height: 100vh; 
+            box-sizing: border-box; 
+        }.quiz-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 2rem; 
+            max-width: 700px; 
+            margin: 0 auto;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden; 
+        }
+        #quiz-start, #quiz-results, #quiz-question {
+            text-align: center;
+        }
+        #quiz-question, #quiz-results {
+            display: none;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 1.2rem 2rem; 
+            margin: -2rem -2rem 2rem -2rem; 
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #score-display {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 10px;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+	.question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            padding: 0.8rem 1rem; 
+            background: #f1f3f5;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            line-height: 1.4;
+        }
+        .option-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem; 
+            margin-bottom: 1.5rem; 
+        }
+        .option-btn {
+            background: var(--light-color);
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.7rem 1rem; 
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem; 
+            font-family: var(--font-body);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            line-height: 1.3;
+        }
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        .option-btn:hover:not(:disabled)::before {
+            left: 100%;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #e9ecef;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: var(--success-color);
+            color: #155724;
+            font-weight: 600;
+            animation: correctPulse 0.5s ease;
+        }
+        .option-btn.correct::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            content: '\f00c';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--success-color);
+        }
+        .option-btn.incorrect {
+            background: #f8d7da;
+            border-color: var(--danger-color);
+            color: #721c24;
+            font-weight: 600;
+            animation: shake 0.5s ease;
+        }
+        .option-btn.incorrect::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            content: '\f00d';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--danger-color);
+        }
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .quiz-controls {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #next-btn {
+            display: none;
+        }
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .hidden.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-image {
+                order: -1;
+                margin: 0 auto 2rem auto;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }.section-title {
+            display: none; 
+        }
+            .floating-element {
+                display: none;
+            }
+            .pendahuluan-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar .container { flex-direction: column; }
+            .navbar .nav-links { margin-top: 1rem; }
+            .navbar .nav-links a { margin: 0 0.75rem; }
+            section { padding: 3rem 0; }
+            #beranda { padding-top: 150px; }
+            #kuis { padding-top: 8rem; }
+            .modal-content { margin: 10% auto; width: 95%; }
+            .modal-tabs { flex-wrap: wrap; }
+            .tab-btn { flex: 1 1 50%; text-align: center; }
+            .quiz-container { padding: 1.5rem; }
+            .question-text { font-size: 1.15rem; }
+            .option-btn { font-size: 0.9rem; }
+        }
+        @media (max-width: 576px) {
+            html { font-size: 14px; }
+            
+            .navbar .container { 
+                flex-direction: column; 
+                padding: 0.5rem 1rem; 
+            }
+            .navbar .nav-links { 
+                margin-top: 0.5rem; 
+                display: flex; 
+                gap: 10px; 
+                font-size: 0.8rem;
+                justify-content: center;
+            }
+            .navbar .nav-links a { margin: 0; }
+
+            #beranda { 
+                padding-top: 130px; 
+                display: flex; 
+                flex-direction: column; 
+                text-align: center;
+            }
+            .hero-text h1 { font-size: 2.2rem; } 
+            .hero-grid { display: flex; flex-direction: column; gap: 2rem; }
+            .hero-image { order: -1; } 
+            .hero-image img { max-width: 250px; border-width: 4px; } 
+            .hero-buttons { justify-content: center; }
+
+            .modal-content { width: 95%; margin: 15% auto; }
+            .modal-header { padding: 1rem; }
+            .modal-body { padding: 1rem; }
+            
+            .flex-mobile-stack { 
+                flex-direction: column !important; 
+                align-items: center !important; 
+            }
+            .flex-mobile-stack > div { 
+                width: 100% !important; 
+                margin: 0 0 1.5rem 0 !important; 
+            }
+
+            #kuis { 
+                padding-top: 100px; 
+                padding-bottom: 2rem; 
+                min-height: auto; 
+            }
+            .quiz-container { 
+                padding: 1rem; 
+                width: 90%; 
+            }
+            .quiz-header {
+                margin: -1rem -1rem 1rem -1rem; 
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            .question-text { font-size: 0.95rem; }
+            .option-btn { padding: 0.6rem; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="#beranda" class="logo"><i class="fas fa-leaf"></i> EcoLearn</a>
+            <nav class="nav-links">
+                <a href="#beranda">Beranda</a>
+                <a href="#pendahuluan">Pendahuluan</a>
+                <a href="#materi">Materi</a>
+                <a href="#kuis">Kuis</a>
+		<a href="#referensi">Referensi</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="beranda">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1>Belajar Ekonomi <br>Berkelanjutan <span class="highlight">Menyenangkan</h1>
+                    <p class="subtitle">Selamat datang di EcoLearn! Platform interaktif untuk memahami konsep kegiatan ekonomi berkelanjutan—Produksi, Distribusi, dan Konsumsi—dengan pendekatan sustainability living.</p>
+                    <div class="hero-buttons">
+                        <a href="#materi" class="btn btn-primary">Mulai Belajar</a>
+                        <a href="#kuis" class="btn btn-secondary">Ambil Kuis</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8f53e604-0df5-4468-a683-28480dcac7e1_pasted_image_1763547528147.png?auth_key=1863547615-4f65cdf139eb4c16acabcc84bd9bd4df-0-546ba3b9935bfa8d27638672f2a07882" alt="Sustainability Living Diagram">
+                </div>
+            </div>
+        </section>
+        
+        <section id="pendahuluan">
+            <div class="container">
+               <div class="pendahuluan-text">
+                        <h2 class="hidden" style="text-align: center;">Pendahuluan</h2>
+                        
+                        <p class="hidden" style="text-align: justify;">Ekonomi berkelanjutan adalah pendekatan yang menyeimbangkan pertumbuhan ekonomi, kelestarian lingkungan, dan kesejahteraan sosial untuk memenuhi kebutuhan saat ini tanpa mengorbankan generasi mendatang. Dalam kehidupan sehari-hari, konsep <em>sustainability living</em> ini diterapkan melalui kegiatan produksi, distribusi, dan konsumsi yang bertanggung jawab. Setiap individu berperan penting dalam pelestarian ini, salah satunya melalui prinsip 3R (Reuse, Reduce, Recycle) sebagai langkah praktis dan efektif untuk mengurangi limbah dan menjaga kelestarian lingkungan (Cinta Rahmi et al., 2021).</p>
+
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <img src="sustainable.jpg" alt="Diagram Venn Pilar Pembangunan Berkelanjutan" style="max-width: 100%; width: 500px; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar 1. Pilar pembangunan berkelanjutan</p>
+                        </div>
+			<div class="hidden" style="margin-bottom: 3rem;">
+                            
+    				<h3 style="color: var(--primary-color); margin-top: 1.5rem; text-align: center;">Keberlanjutan Lingkungan</h3>
+    					<p style="text-align: justify;">Keberlanjutan lingkungan merupakan inti berfokus pada upaya pelestarian dan pemeliharaan kesehatan planet Bumi kita. Pilar ini menekankan pentingnya penggunaan sumber daya alam secara bertanggung jawab dan bijaksana, pengurangan produksi limbah dan tingkat polusi yang dihasilkan dari berbagai aktivitas, serta konservasi keanekaragaman hayati yang sangat berharga.</p>
+    					<p style="text-align: justify;">Fokus utama pada keberlanjutan lingkungan ini menuntut tindakan yang segera dan signifikan untuk mengatasi permasalahan perubahan iklim yang semakin mendesak, melindungi ekosistem alami yang beragam dan rentan, serta memulihkan kondisi lingkungan yang telah mengalami kerusakan akibat aktivitas manusia.</p>
+
+  				<h3 style="color: var(--primary-color); margin-top: 1.5rem; text-align: center;">Keberlanjutan Sosial</h3>
+    					<p style="text-align: justify;">Keberlanjutan sosial memiliki fokus utama pada promosi komunitas yang adil dan inklusif, yang dapat memenuhi kesejahteraan seluruh individu dalam masyarakat. Pilar ini menekankan betapa pentingnya penyediaan akses yang merata terhadap kebutuhan dasar manusia, seperti pendidikan berkualitas, layanan perawatan kesehatan yang memadai, serta berbagai peluang untuk pengembangan diri secara pribadi dan profesional bagi setiap anggota masyarakat.</p>
+
+    				<h3 style="color: var(--primary-color); margin-top: 1.5rem; text-align: center;">Keberlanjutan Ekonomi</h3>
+    					<p style="text-align: justify;">Pilar ini mendorong pengelolaan sumber daya ekonomi yang bertanggung jawab dan efisien, penerapan praktik bisnis yang berkelanjutan dan beretika, serta promosi model ekonomi sirkular yang meminimalkan limbah dan memaksimalkan penggunaan sumber daya.</p>
+    					<p style="text-align: justify;">Dengan mengimplementasikan prinsip-prinsip keberlanjutan ekonomi, kita dapat memastikan bahwa seluruh kegiatan ekonomi yang dilakukan selaras dengan tujuan untuk mencapai kesejahteraan lingkungan dan sosial secara bersamaan, sehingga membuka jalan bagi terciptanya ekonomi global yang makmur, adil, dan berkelanjutan dalam jangka panjang (Ade S, 2025).</p>
+			</div>
+
+                        <div class="pendahuluan-features">
+                            <div class="feature-card hidden">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Keseimbangan</h3>
+                                <p>Menyeimbangkan kebutuhan ekonomi, sosial, dan lingkungan</p>
+                            </div>
+                            <div class="feature-card hidden">
+                                <i class="fas fa-infinity"></i>
+                                <h3>Kelangsungan</h3>
+                                <p>Memastikan sumber daya tersedia untuk generasi mendatang</p>
+                            </div>
+                            <div class="feature-card hidden">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Keterlibatan</h3>
+                                <p>Partisipasi aktif masyarakat dalam praktik ekonomi berkelanjutan</p>
+                            </div>
+                            <div class="feature-card hidden">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Inovasi</h3>
+                                <p>Pengembangan solusi kreatif untuk tantangan ekonomi dan lingkungan</p>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        
+        <section id="materi">
+            <div class="container">
+                <h2 class="section-title hidden">Materi Pembelajaran</h2>
+                <div class="materi-grid">
+                    <div class="materi-card hidden" onclick="openModal('modalProduksi')">
+                        <div class="materi-card-bg" style="background-image: url('https://z-cdn-media.chatglm.cn/files/25f4fdf4-2eb8-4e9e-bbf6-a76645805fda_pasted_image_1763539597968.png?auth_key=1863539824-c268869f04914b2f84287fdd6796de33-0-99052bdaad82968e9a64865c7ed628e7');"></div>
+                        <div class="materi-card-overlay">
+                            <i class="fas fa-industry"></i>
+                            <h3>Produksi</h3>
+                        </div>
+                        <span class="card-action-btn">Lihat Materi <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="materi-card hidden" onclick="openModal('modalDistribusi')">
+                        <div class="materi-card-bg" style="background-image: url('https://z-cdn-media.chatglm.cn/files/72ce3789-9e10-4a52-9832-46d9501df459_pasted_image_1763539616749.png?auth_key=1863539824-67758070db43407aac32489f28b6e4e9-0-52fccd4476f71d5eca2c83dd5341fb20');"></div>
+                        <div class="materi-card-overlay">
+                            <i class="fas fa-truck"></i>
+                            <h3>Distribusi</h3>
+                        </div>
+                        <span class="card-action-btn">Lihat Materi <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="materi-card hidden" onclick="openModal('modalKonsumsi')">
+                        <div class="materi-card-bg" style="background-image: url('https://z-cdn-media.chatglm.cn/files/c89b2d7a-f9e8-4593-ba55-6717089d5612_pasted_image_1763539644218.png?auth_key=1863539824-7623ed5d27e242338e30d37cba2256db-0-5f5bd7f16fd33c38e26ea2d7c16dd210');"></div>
+                        <div class="materi-card-overlay">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Konsumsi</h3>
+                        </div>
+                        <span class="card-action-btn">Lihat Materi <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+   <div id="modalProduksi" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-industry"></i> Materi: Produksi Berkelanjutan</h2>
+                    <button class="close-btn" onclick="closeModal('modalProduksi')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-tabs">
+                        <button class="tab-btn active" onclick="showTab(event, 'produksi-definisi')">Definisi & Jenis</button>
+                        <button class="tab-btn" onclick="showTab(event, 'produksi-faktor')">Faktor-Faktor</button>
+                        <button class="tab-btn" onclick="showTab(event, 'produksi-contoh')">Contoh & Daur Ulang</button>
+                    </div>
+
+                    <div id="produksi-definisi" class="tab-content active">
+                        
+                        <h4>Definisi Produksi</h4>
+                        <p>Produksi merupakan kegiatan menciptakan atau menambah nilai dan manfaat suatu barang dan atau jasa. Produksi adalah transformasi dari faktor-faktor produksi menjadi produk atau hasil produksi. Kegiatan produksi mengolah barang mentah menjadi barang setengah jadi dan menjadi barang jadi.</p>
+
+                        <h4>Jenis Produksi</h4>
+                        <p>Hasil produksi dibagi menjadi dua yaitu produksi barang dan jasa:</p>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">1) Produksi Barang</div>
+                                <p class="list-item-description">Merupakan kegiatan mengubah sifat maupun bentuk benda. Produksi barang ini dibedakan menjadi barang modal dan barang konsumsi. Misalnya produksi roti, produksi beras, produksi lemari, penjahit, dan lain-lain.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">2) Produksi Jasa</div>
+                                <p class="list-item-description">Merupakan kegiatan menambah nilai guna suatu barang tanpa mengubah bentuknya. Misalnya jasa perawatan kecantikan, jasa pengobatan, dan jasa pariwisata.</p>
+                            </div>
+                        </div>
+
+                        <h4>Tujuan Kegiatan Produksi</h4>
+                        <p>Tujuan utama kegiatan ekonomi adalah untuk memenuhi kebutuhan manusia dalam rangka kemakmuran. Kemakmuran merupakan keadaan di mana jumlah alat pemuas kebutuhan cukup dan dapat digunakan untuk memenuhi kebutuhan manusia.</p>
+                        <p><strong>Secara khusus tujuan produksi adalah meningkatkan keuntungan bagi produsen atau perusahaan.</strong></p>
+                    </div>
+
+                    <div id="produksi-faktor" class="tab-content">
+                        <h4>Faktor-Faktor Produksi</h4>
+                        <p>Faktor produksi merupakan segala sesuatu yang diperlukan dalam proses produksi barang dan jasa. Produksi tidak hanya memerlukan bahan baku tetapi juga faktor lain yang mendukung proses produksi dapat berjalan dengan baik. Faktor produksi dibedakan menjadi 4 (empat) yaitu:</p>
+                        
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">a. Faktor Alam</div>
+                                <p class="list-item-description">Faktor alam menjadi salah satu komponen yang sangat penting dalam kegiatan produksi. Faktor alam merupakan hasil alam baik berupa benda maupun makhluk hidup yang digunakan dalam kegiatan produksi untuk mencapai kemakmuran.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">b. Faktor Tenaga Kerja</div>
+                                <p class="list-item-description">Tenaga kerja merupakan faktor produksi yang menjalankan kegiatan produksi secara langsung maupun tidak langsung dengan tenaganya untuk menghasilkan barang dan jasa. Misalnya staf bagian produksi dan operator mesin produksi.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">c. Faktor Modal</div>
+                                <p class="list-item-description">Faktor modal tidak hanya berbentuk uang tunai. Faktor modal meliputi semua barang dan benda yang digunakan untuk memperlancar dan memaksimalkan proses produksi. Faktor produksi modal dapat berupa peralatan, mesin, gedung, dan benda penunjang kegiatan produksi lainnya.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">d. Faktor Kewirausahaan</div>
+                                <p class="list-item-description">Faktor keahlian berfungsi untuk mengontrol dan memastikan faktor-faktor produksi berjalan dengan baik dan menghasilkan produksi yang maksimal. Faktor produksi alam, tenaga kerja, dan modal yang ada tidak akan maksimal jika perusahaan tidak memiliki faktor keahlian yang mampu mengelola semua hal tersebut.</p>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;">
+                             <img src="https://z-cdn-media.chatglm.cn/files/a57c3aba-3324-4866-9b7b-eb901e567898_pasted_image_1763539609857.png?auth_key=1863539824-49e968d2137d4631845c63f8a8864ca7-0-ffad625c3e86e1a800d4fc200d25825b" alt="Ilustrasi Faktor Produksi" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+
+            <div id="produksi-contoh" class="tab-content">
+                        <h3>Contoh Praktik Produksi Berkelanjutan</h3>
+                        
+                        <h4>Produksi Kopi Agroforestry di Lampung Barat</h4>
+                        <p>Dalam konsep <em>sustainability living</em>, setiap proses produksi diharapkan dapat mengurangi dampak negatif terhadap lingkungan. Salah satu contoh kegiatan produksi yang berkelanjutan di Provinsi Lampung yaitu produksi lokal kopi Lampung.</p>
+                        
+                        <p>Petani kopi di Lampung Barat menerapkan sistem kebun campuran atau <em>agroforestry</em>. Hal ini dilakukan untuk menjaga kesuburan tanah sehingga dapat meningkatkan keanekaragaman hayati serta mengurangi erosi.</p>
+                        
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/25f4fdf4-2eb8-4e9e-bbf6-a76645805fda_pasted_image_1763539597968.png?auth_key=1863539824-c268869f04914b2f84287fdd6796de33-0-99052bdaad82968e9a64865c7ed628e7" alt="Petani Kopi Agroforestry" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar 2. Petani kopi sedang memanen kopi agroforestri (Sumber: teknokra.co)</p>
+                        </div>
+                        
+                        <h4>Nilai Guna & Daur Ulang</h4>
+                        <p>Produksi yang memanfaatkan limbah atau produk daur ulang merupakan cara untuk menambah nilai guna suatu barang menjadi produk bernilai ekonomi.</p>
+                        
+                        <p><strong>Contoh:</strong> Daur ulang botol kaca bekas menjadi lampu hias.</p>
+
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/1b108390-afb8-4875-8b8c-58b744498565_pasted_image_1763539603287.png?auth_key=1863539824-a396c66ca6294853868c0879c38be01f-0-e4164a4d141bc1e23197404917ee63e9" alt="Lampu Hias dari Botol Kaca Bekas" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar 3. Lampu hias dari botol kaca bekas botol minuman</p>
+                        </div>
+                    </div>
+
+                        <p>Daur ulang, yaitu penggunaan kembali limbah dalam berbagai bentuk diantaranya dikembalikan ke bentuk semula, bahan baku pengganti untuk produksi lain, dipisahkan untuk diambil kembali bagian yang bermanfaat, dan diolah kembali sebagai produk samping (Prabawati, 2022).</p>
+                        </div>
+                </div>
+                    <div id="produksi-faktor" class="tab-content">
+                        <h3>Faktor-Faktor Produksi</h3>
+                        <p>Faktor produksi merupakan segala sesuatu yang diperlukan dalam proses produksi barang dan jasa. Produksi tidak hanya memerlukan bahan baku tetapi juga faktor lain yang mendukung proses produksi dapat berjalan dengan baik. Faktor produksi dibedakan menjadi 4 (empat) yaitu:</p>
+                        
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/a57c3aba-3324-4866-9b7b-eb901e567898_pasted_image_1763539609857.png?auth_key=1863539824-49e968d2137d4631845c63f8a8864ca7-0-ffad625c3e86e1a800d4fc200d25825b" alt="Faktor-Faktor Produksi" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        </div>
+                        
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Faktor Alam</div>
+                                <p class="list-item-description">Faktor alam menjadi salah satu komponen yang sangat penting dalam kegiatan produksi. Faktor alam merupakan hasil alam baik berupa benda maupun makhluk hidup yang digunakan dalam kegiatan produksi untuk mencapai kemakmuran.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Faktor Tenaga Kerja</div>
+                                <p class="list-item-description">Tenaga kerja merupakan faktor produksi yang menjalankan kegiatan produksi secara langsung maupun tidak langsung. Tenaga kerja menjalankan kegiatan produksi secara langsung dan tidak langsung dengan tenaganya untuk menghasilkan barang dan jasa. Misalnya staf bagian produksi dan operator mesin produksi.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Faktor Modal</div>
+                                <p class="list-item-description">Faktor modal tidak hanya berbentuk uang tunai. Faktor modal meliputi semua barang dan benda yang digunakan untuk memperlancar dan memaksimalkan proses produksi. Faktor produksi modal dapat berupa peralatan, mesin, gedung dan benda penunjang kegiatan produksi lainnya.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Faktor Kewirausahaan</div>
+                                <p class="list-item-description">Faktor keahlian berfungsi untuk mengontrol dan memastikan faktor-faktor produksi berjalan dengan baik dan menghasilkan produksi yang maksimal. Faktor produksi alam, tenaga kerja dan modal yang ada tidak akan maksimal jika perusahaan tidak memiliki faktor keahlian yang mampu mengelola semua hal tersebut.</p>
+                            </div>
+                        </div>
+                    </div>
+                   <div id="produksi-contoh" class="tab-content">
+                        <h3>Contoh Praktik Produksi Berkelanjutan</h3>
+                        
+                        <h4>Produksi Kopi Agroforestry di Lampung Barat</h4>
+                        <p>Dalam konsep <em>sustainability living</em>, setiap proses produksi diharapkan dapat mengurangi dampak negatif terhadap lingkungan. Salah satu contoh kegiatan produksi yang berkelanjutan di Provinsi Lampung yaitu produksi lokal kopi Lampung.</p>
+                        
+                        <p>Petani kopi di Lampung Barat menerapkan sistem kebun campuran atau <em>agroforestry</em>. Hal ini dilakukan untuk menjaga kesuburan tanah sehingga dapat meningkatkan keanekaragaman hayati serta mengurangi erosi.</p>
+                        
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/25f4fdf4-2eb8-4e9e-bbf6-a76645805fda_pasted_image_1763539597968.png?auth_key=1863539824-c268869f04914b2f84287fdd6796de33-0-99052bdaad82968e9a64865c7ed628e7" alt="Petani Kopi Agroforestry" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar 2. Petani kopi sedang memanen kopi agroforestri (Sumber: teknokra.co)</p>
+                        </div>
+                        
+                        <h4>Nilai Guna & Daur Ulang</h4>
+                        <p>Produksi yang memanfaatkan limbah atau produk daur ulang merupakan cara untuk menambah nilai guna suatu barang menjadi produk bernilai ekonomi.</p>
+                        
+                        <p><strong>Contoh:</strong> Daur ulang botol kaca bekas menjadi lampu hias.</p>
+
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/1b108390-afb8-4875-8b8c-58b744498565_pasted_image_1763539603287.png?auth_key=1863539824-a396c66ca6294853868c0879c38be01f-0-e4164a4d141bc1e23197404917ee63e9" alt="Lampu Hias dari Botol Kaca Bekas" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar 3. Lampu hias dari botol kaca bekas botol minuman</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalDistribusi" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-truck"></i> Materi: Distribusi Berkelanjutan</h2>
+                    <button class="close-btn" onclick="closeModal('modalDistribusi')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-tabs">
+                        <button class="tab-btn active" onclick="showTab(event, 'distribusi-definisi')">Definisi & Tujuan</button>
+                        <button class="tab-btn" onclick="showTab(event, 'distribusi-hijau')">Distribusi Hijau</button>
+                        <button class="tab-btn" onclick="showTab(event, 'distribusi-jenis')">Jenis Distribusi</button>
+                    </div>
+                    <div id="distribusi-definisi" class="tab-content active">
+                        <h3>Apa itu Distribusi?</h3>
+                        <p>Setelah kegiatan produksi, kegiatan selanjutnya yaitu kegiatan distribusi. Distribusi merupakan kegiatan menyalurkan barang atau jasa dari pihak produsen kepada pihak konsumen. Orang yang melakukan distribusi disebut distributor.</p>
+                        
+                        <h3>Tujuan Distribusi</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Menyalurkan barang dari produsen ke konsumen</li>
+                            <li><i class="fas fa-check-circle"></i> Barang produksi lebih berguna</li>
+                            <li><i class="fas fa-check-circle"></i> Kebutuhan barang dan jasa konsumen dapat terpenuhi</li>
+                            <li><i class="fas fa-check-circle"></i> Menjaga keberlangsungan produksi perusahaan</li>
+                        </ul>
+                        
+                        <h3>Distribusi Berkelanjutan</h3>
+                        <p>Dalam upaya melakukan distribusi hasil produksi, kegiatan produksi atau industri diharapkan dapat meningkatkan keseimbangan antara kinerja dengan isu lingkungan yang melahirkan isu baru seperti penghematan penggunaan energi, dan pengurangan polusi dalam usaha peningkatan strategi daya saing.</p>
+                        <p>Dalam konteks distribusi berkelanjutan atau distribusi hijau (Green Distribution) kegiatan dalam distribusi hijau yaitu kemasan hijau dan logistik hijau. Logistik hijau atau green logistics adalah konsep yang semakin penting dalam dunia logistik yang berfokus pada pengelolaan distribusi barang secara efisien sambil meminimalkan dampak negatif terhadap lingkungan.</p>
+                    </div>
+                    <div id="distribusi-hijau" class="tab-content">
+                        <h3>Praktik Logistik Hijau</h3>
+                        <p>Berikut adalah beberapa praktik utama yang diterapkan dalam logistik hijau:</p>
+                        
+                        <h4>1. Penggunaan Kendaraan Ramah Lingkungan</h4>
+                        <p>Penggunaan kendaraan yang ramah lingkungan seperti kendaraan listrik dan hidrogen menjadi fokus utama dalam industri logistik. Perusahaan logistik mulai beralih dari kendaraan berbahan bakar fosil ke kendaraan listrik atau kendaraan yang menggunakan bahan bakar alternatif, seperti gas alam terkompresi (CNG) atau biofuel. Kendaraan listrik, misalnya, mengurangi emisi karbon dan polusi udara, yang sangat penting di kota-kota besar dengan tingkat polusi tinggi.</p>
+                        <p><strong>Contoh Penerapan:</strong></p>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Truk Listrik</div>
+                                <p class="list-item-description">Perusahaan logistik seperti DHL dan FedEx telah mulai mengimplementasikan truk listrik untuk pengiriman barang di kota-kota tertentu. Truk listrik ini tidak hanya mengurangi emisi karbon tetapi juga mengurangi kebisingan di area perkotaan.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Transportasi Berbahan Bakar Alternatif</div>
+                                <p class="list-item-description">Selain truk listrik, perusahaan juga menggunakan kendaraan berbahan bakar alternatif yang lebih ramah lingkungan daripada kendaraan diesel tradisional.</p>
+                            </div>
+                        </div>
+                        
+                        <h4>2. Optimasi Rute Pengiriman</h4>
+                        <p>Mengoptimalkan rute adalah salah satu cara dalam mengurangi emisi karbon. Dengan menggunakan teknologi seperti sistem manajemen transportasi (TMS) dan kecerdasan buatan (AI), perusahaan dapat merencanakan rute pengiriman yang paling efisien, menghindari kemacetan, dan mengurangi jarak tempuh. dengan pengoptimalan rute tentunya perusahaan dapat menekan biaya dan mempercepat pengiriman.</p>
+                        
+                        <div style="text-align: center;">
+                            <img src="https://z-cdn-media.chatglm.cn/files/72ce3789-9e10-4a52-9832-46d9501df459_pasted_image_1763539616749.png?auth_key=1863539824-67758070db43407aac32489f28b6e4e9-0-52fccd4476f71d5eca2c83dd5341fb20" alt="Pasar Kuliner Payungi" style="max-width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <p class="image-caption">Gambar 4. Kuliner Pasar Payungi Sumber: https://analisis.co.id/2021/03/29/kuy-guys-kepoin-empat-wisata-pasar-kuliner-di-kota-metro-yang-wajib-dikunjungi/Wisata</p>
+                        </div>
+                        
+                        <p><strong>Contoh:</strong> Kuliner Payungi (Pasar Yosomulyo Pelangi) merupakan salah satu contoh distribusi yang dilakukan antara produsen dengan konsumen dalam rangka mengoptimalkan rute. Pada pasar payungi diprioritaskan pedagang yang berasal dari lingkungan sekitar yaitu warga Kelurahan Yosomulyo. Di Wisata Payungi terdapat Permainan Flying Fox, Panahan, Taman Kelinci. dan juga terdapat Jajanan Kuliner, Payungi Merchandise, Kampung Bahasa Inggris, Kampung Kopi, Payungi Universty, co-working space.</p>
+                        
+                        <h4>3. Pengurangan Penggunaan Kemasan Plastik</h4>
+                        <p>Penggunaan kemasan plastik sekali pakai adalah salah satu masalah terbesar dalam logistik yang berdampak buruk pada lingkungan. Untuk mengatasi hal ini, banyak perusahaan beralih ke bahan kemasan yang lebih ramah lingkungan, seperti kemasan yang dapat didaur ulang, biodegradable, atau berbahan dasar alami.</p>
+                        
+                        <h4>Jenis-Jenis Kemasan Biodegradable yang Cocok untuk UMKM:</h4>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Kertas Daur Ulang</div>
+                                <p class="list-item-description">Kertas daur ulang adalah jenis kemasan biodegradable yang paling mudah diakses dan ekonomis. Bisa digunakan untuk membungkus makanan kering, kemasan luar produk fashion, hingga amplop untuk aksesoris.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Bahan Tepung (Starch-Based Packaging)</div>
+                                <p class="list-item-description">Jenis kemasan ini terbuat dari pati jagung, singkong, atau kentang. Biasanya berbentuk plastik transparan atau kantong yang bisa terurai dengan cepat.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Daun Pisang atau Daun Jati</div>
+                                <p class="list-item-description">Ini adalah jenis kemasan biodegradable tradisional yang kembali populer karena keunikan dan kesan natural-nya. Selain itu, tampilannya sangat menarik untuk konsumen lokal maupun mancanegara.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Bambu atau Rotan Mini</div>
+                                <p class="list-item-description">Kamu tentunya sering atau pernah melihat produk UMKM seperti makanan atau kerajinan tangan yang dibungkus dalam wadah bambu kecil atau basket dari rotan. Ini termasuk dalam kategori kemasan biodegradable karena seluruh bahan dasarnya alami.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Bioplastik dari PLA (Polylactic Acid)</div>
+                                <p class="list-item-description">PLA adalah plastik yang terbuat dari fermentasi gula alami seperti jagung. Ia terlihat seperti plastik biasa, tapi bisa terurai dengan cepat dalam kondisi kompos.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Kertas Kraft</div>
+                                <p class="list-item-description">Brown paper atau kertas kraft juga termasuk dalam kategori kemasan biodegradable. Ia mudah dibentuk dan bisa dicetak logo usaha kamu.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Mika dari Bahan Organik</div>
+                                <p class="list-item-description">Beberapa produsen kini menawarkan clamshells atau mika transparan berbahan dasar selulosa tumbuhan. Bentuknya seperti plastik mika biasa tapi cepat terurai.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan Berbahan Serat Tebu (Bagasse)</div>
+                                <p class="list-item-description">Bagasse adalah limbah dari proses pembuatan gula yang kini diubah jadi bahan kemasan tahan panas dan biodegradable. Bentuk kemasannya pun bisa disesuaikan, seperti persegi panjang, lingkaran, dan lain sebagainya.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Bubble Wrap dari Pati atau Kertas</div>
+                                <p class="list-item-description">Daripada bubble wrap plastik, kamu bisa gunakan versi ramah lingkungan dari bahan pati atau kraft paper yang dilipat khusus.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Kemasan dari Jamur (Mushroom Packaging)</div>
+                                <p class="list-item-description">Kemasan yang satu ini termasuk teknologi baru dalam dunia kemasan biodegradable, di mana jamur tumbuh dalam cetakan tertentu dan mengeras seperti busa. Setelah digunakan, ia bisa langsung dikomposkan.</p>
+                            </div>
+                        </div>
+                        
+                        <h4>4. Penerapan Teknologi untuk Meningkatkan Efisiensi Gudang</h4>
+                        <p>Logistik hijau juga mencakup penerapan teknologi untuk mengelola energi dengan lebih efisien di fasilitas gudang. Perusahaan logistik menggunakan teknologi untuk mengurangi konsumsi energi, seperti sistem pencahayaan LED, kontrol suhu otomatis, dan penggunaan energi terbarukan (misalnya, panel surya).</p>
+                        <p><strong>Contoh Penerapan:</strong></p>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Gudang Pintar</div>
+                                <p class="list-item-description">Beberapa perusahaan logistik menggunakan sistem otomasi dan robotik untuk memindahkan barang dalam gudang secara efisien, mengurangi kebutuhan untuk pencahayaan tambahan atau pemanasan berlebihan, yang pada akhirnya menghemat energi.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Penggunaan Energi Terbarukan</div>
+                                <p class="list-item-description">Perusahaan seperti Walmart dan Amazon telah mengintegrasikan penggunaan energi terbarukan di fasilitas mereka, seperti pemasangan panel surya untuk mengurangi ketergantungan pada energi fosil.</p>
+                            </div>
+                        </div>
+                        
+                        <h4>5. Pengelolaan Limbah dan Daur Ulang</h4>
+                        <p>Pengelolaan limbah adalah aspek penting dalam logistik hijau. Banyak perusahaan logistik yang kini berfokus pada pengurangan limbah dan mendaur ulang bahan-bahan yang digunakan dalam proses logistik, seperti bahan kemasan dan barang-barang yang rusak.</p>
+                        <p><strong>Contoh Penerapan:</strong></p>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Pengelolaan Limbah yang Efisien</div>
+                                <p class="list-item-description">Perusahaan logistik mulai mengimplementasikan kebijakan untuk mengurangi limbah, seperti mendaur ulang kemasan dan barang rusak, serta menggunakan kembali bahan yang masih bisa digunakan.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Zero-Waste Initiatives</div>
+                                <p class="list-item-description">Beberapa perusahaan logistik memiliki inisiatif untuk mencapai "zero-waste," yaitu mengurangi jumlah sampah yang dibuang ke tempat pembuangan akhir dengan cara mendaur ulang atau mengkomposkan limbah yang ada.</p>
+                            </div>
+                        </div>
+                        
+                        <h4>Contoh Pengolahan Limbah Organik</h4>
+                        <p>Pisang merupakan salah satu komoditas hortikultura terbesar yang diproduksi di Provinsi Lampung. Produksinya naik 1 peringkat dari tahun 2022, dan menjadi salah satu provinsi dengan produksi pisang terbesar kedua di Indonesia. Peningkatan produksi pisang berdampak pada peningkatan limbah kulit pisang.</p>
+                        <p>Salah satu cara yang efektif untuk mengolah sampah organik kulit pisang adalah dengan mengubahnya menjadi pupuk organik cair, yang dapat meningkatkan kesehatan tanah dan menyuburkan lahan pertanian serta perkebunan. Limbah kulit pisang juga dapat dimanfaatkan menjadi sumber bioenergi serta di daur ulang menjadi keripik kulit pisang.</p>
+                    </div>
+                    <div id="distribusi-jenis" class="tab-content">
+                        <h3>Jenis-Jenis Distribusi</h3>
+                        <p>Berdasarkan cara penyaluran, distribusi dibedakan menjadi 3 (tiga) yaitu:</p>
+                        
+                        <h4>1. Distribusi Langsung</h4>
+                        <p>Distribusi langsung merupakan kegiatan distribusi yang dilaksanakan tanpa perantara antara produsen dan konsumen.</p>
+                        
+                        <h4>2. Distribusi Semi Langsung</h4>
+                        <p>Distribusi semi langsung merupakan kegiatan distribusi di mana produsen mendistribusikan barang dan jasanya kepada konsumen melalui perantara yang merupakan bagian dari produsen. Contoh Samsung menjual produknya melalui Samsung center.</p>
+                        
+                        <h4>3. Distribusi Tidak Langsung</h4>
+                        <p>Distribusi tidak langsung merupakan kegiatan distribusi di mana produsen mendistribusikan barang dan jasanya melalui perantara. Perantara tersebut dapat berupa agen, minimarket, pasar dan pedagang kecil.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalKonsumsi" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-shopping-cart"></i> Materi: Konsumsi Berkelanjutan</h2>
+                    <button class="close-btn" onclick="closeModal('modalKonsumsi')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-tabs">
+                        <button class="tab-btn active" onclick="showTab(event, 'konsumsi-definisi')">Definisi & Tujuan</button>
+                        <button class="tab-btn" onclick="showTab(event, 'konsumsi-faktor')">Faktor Konsumsi</button>
+                        <button class="tab-btn" onclick="showTab(event, 'konsumsi-praktik')">Praktik Berkelanjutan</button>
+                    </div>
+                    <div id="konsumsi-definisi" class="tab-content active">
+                        <h3>Apa itu Konsumsi?</h3>
+                        <p>Konsumsi merupakan kegiatan menghabiskan atau mengurangi manfaat suatu barang untuk memenuhi kebutuhannya. Secara umum konsumsi bertujuan untuk memenuhi kebutuhan dan menjaga kelangsungan hidup manusia. Manusia harus mencari cara agar kebutuhannya dapat tercukupi dengan baik dan berkelanjutan, contohnya seperti meminimalkan penggunaan SDA, serta pembuangan sampah dan polutan sehingga tidak membahayakan lingkungan (Konsep Dasar Ekonomi Pendekatan Nilai-Nilai Eco-Culture, n.d.).</p>
+                        
+                        <h3>Tujuan Konsumsi</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Mengurangi manfaat suatu barang</li>
+                            <li><i class="fas fa-check-circle"></i> Menghabiskan manfaat suatu barang</li>
+                            <li><i class="fas fa-check-circle"></i> Menjaga status sosial di masyarakat dengan produk-produk kebutuhan tersier</li>
+                            <li><i class="fas fa-check-circle"></i> Menjaga kesehatan tubuh dengan konsumsi vitamin dan gizi seimbang</li>
+                            <li><i class="fas fa-check-circle"></i> Memenuhi kebutuhan jasmani</li>
+                            <li><i class="fas fa-check-circle"></i> Memenuhi kebutuhan rohani</li>
+                            <li><i class="fas fa-check-circle"></i> Estetika atau keindahan</li>
+                        </ul>
+                    </div>
+                    <div id="konsumsi-faktor" class="tab-content">
+                        <h3>Faktor-Faktor yang Mempengaruhi Konsumsi</h3>
+                        <p>Sama halnya kebutuhan, konsumsi yang digunakan setiap orang berbeda-beda. Ada beberapa hal yang mempengaruhi perbedaan konsumsi itu:</p>
+                        
+                        <h4>1. Faktor Internal</h4>
+                        <p>Faktor internal yaitu faktor yang berasal dari dalam diri seseorang meliputi motivasi, sikap dan selera.</p>
+                        
+                        <h4>2. Faktor Eksternal</h4>
+                        <p>Faktor eksternal yaitu faktor yang berasal dari luar seseorang meliputi pekerjaan, harga barang atau jasa dan kebudayaan.</p>
+                        
+                        <h3>Konsumsi Berkelanjutan</h3>
+                        <p>Manusia dalam kehidupan sehari-hari selalu membutuhkan makanan sebagai kebutuhan primer dan pakaian sebagai kebutuhan sekunder, dan kebutuhan itu yang selalu harus terpenuhi karena merupakan kebutuhan dasar dan masuk dalam konsumsi berkelanjutan masyarakat. Sumber Daya Alam (SDA) dipelihara, diolah dan dimanfaatkan oleh masyarakat untuk keberlanjutan hidup oleh karena itu butuh peran serta masyarakat dalam pelestarian Sumber Daya Alam (SDA) semaksimal mungkin.</p>
+                        
+                        <p>Konsumen muda cenderung memiliki pengetahuan yang baik tentang masalah lingkungan dan praktik ramah lingkungan, namun kurang dalam penerapan praktik konsumsi berkelanjutan.</p>
+                    </div>
+                    <div id="konsumsi-praktik" class="tab-content">
+                        <h3>Contoh Konsumsi Berkelanjutan</h3>
+                        <p>Berikut ini merupakan contoh konsumsi yang dapat dilakukan dalam konsep sustainability living:</p>
+                        
+                        <h4>1. Memilah Sampah di Rumah</h4>
+                        <p>Dengan memisahkan sampah menjadi tiga kategori, yaitu sampah organik, sampah yang bisa didaur ulang, dan sampah residual, dengan adanya bantuan masyarakat dalam memisahkan sampah plastik di rumah, akan memudahkan pemulung dalam pengumpulkan sampah plastik bernilai ekonomis untuk dijual ke industri daur ulang.</p>
+                        
+                        <h4>2. Pengolahan Sampah Organik oleh Maggot</h4>
+                        <p>Maggot bermanfaat bagi kehidupan sehari-hari dalam hal penguraian sampah terutama sampah organik rumah tangga. Hasil pengolahan oleh maggot bisa dimanfaatkan menjadi pupuk. Sedangkan maggot yang telah siap dipanen (fresh maggot) bisa digunakan sebagai pakan alternatif unggas dan ikan.</p>
+                        
+                        <div class="flex-mobile-stack" style="display: flex; justify-content: center; align-items: flex-start; margin: 1rem 0;">
+                            
+                            <div style="width: 45%; margin: 0 1rem; text-align: center;">
+                                <img src="https://z-cdn-media.chatglm.cn/files/c89b2d7a-f9e8-4593-ba55-6717089d5612_pasted_image_1763539644218.png?auth_key=1863539824-7623ed5d27e242338e30d37cba2256db-0-5f5bd7f16fd33c38e26ea2d7c16dd210" alt="Budidaya Maggot" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                <p class="image-caption" style="margin-top: 10px; min-height: 48px; display: flex; align-items: flex-start; justify-content: center;">(1)</p>
+                            </div>
+
+                            <div style="width: 45%; margin: 0 1rem; text-align: center;">
+                                <img src="https://z-cdn-media.chatglm.cn/files/a31524c2-30f3-4e5e-bb48-45d51c776776_pasted_image_1763539638905.png?auth_key=1863539824-9df01a2304f643f5a72a03093f76768d-0-2b827f9cad6b6ab351dc627957890b3e" alt="Maggot Siap Panen" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                <p class="image-caption" style="margin-top: 10px; min-height: 48px; display: flex; align-items: flex-start; justify-content: center;">(2)</p>
+                            </div>
+
+                        </div>
+                        <p class="image-caption" style="text-align: center; width: 100%; display: block;">Gambar. Budidaya magot (1) Maggot fresh yang akan mengolah sampah organik (2) Maggot yang telah siap dipanen</p>
+                        
+                        <h4>3. Mengurangi Plastik sebagai Pembungkus Makanan/Minuman</h4>
+                        <p>Hal ini bisa kita lakukan dengan cara:</p>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <div class="list-item-title">Membawa tempat makan atau tempat minum sendiri</div>
+                                <p class="list-item-description">ketika hendak membeli makanan atau minuman. Selain praktis ini juga mengurangi penggunaan plastik sebagai kemasan makanan/minuman.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Menggunakan tempat makan atau tempat minum yang dapat digunakan kembali</div>
+                                <p class="list-item-description">Kini sudah banyak merk-merk tempat makan atau tempat minum yang dapat digunakan kembali. Sehingga kita tidak perlu bingung memikirkan bagaimana membawa makanan atau minuman yang akan kita santap. Dan tempat makan atau minum tersebut juga bisa menggantikan peran peralatan makan sekali pakai yang biasa kita gunakan.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Mengurangi penggunaan peralatan makan sekali pakai</div>
+                                <p class="list-item-description">Kita dapat membawa sendok-garpu, sedotan, dll sendiri ketika hendak bersantap di restoran atau tempat makan yang tidak menyediakan peralatan makan yang dapat dipakai kembali.</p>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-item-title">Membawa tas belanja sendiri</div>
+                                <p class="list-item-description">Dengan membawa tas belanja sendiri kita sudah berpartisipasi dalam pengurangan sampah plastik dan tentunya lebih hemat. Dikarenakan mini market atau super market kini mengenakan gerakan plastik belanjaan berbayar.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; align-items: center; margin: 1rem 0;">
+                            <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                                <div style="width: 45%; margin: 0 1rem;">
+                                    <img src="https://z-cdn-media.chatglm.cn/files/744cbe86-8ac7-4aa6-bacf-897b45109a17_konsumsi1.jpg?auth_key=1863546683-7776d23cd7be4bd2935b45fd0cf642d3-0-8326a6900fd9ecf13b8a865ed69a142b" alt="Kemasan Ramah Lingkungan Tomoro Coffee" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                </div>
+                                <div style="width: 45%; margin: 0 1rem;">
+                                    <img src="https://z-cdn-media.chatglm.cn/files/681742b6-edc6-44e2-b6bc-aa466e1dc379_konsumsi2.jpg?auth_key=1863546683-664abbbe98954413b71663c7dec14b35-0-042a1f0584a2ae38c02c834345c4dc24" alt="Kemasan Ramah Lingkungan POLAPACK" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                </div>
+                            </div>
+                            <p class="image-caption" style="width: 100%; text-align: center;">Gambar 5. Pembungkus Produk Makanan Roti Tomoro Coffee Menggunakan Bahan Daur Ulang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="kuis">
+            <div class="container">
+                <h2 class="section-title hidden">Tes Pemahamanmu</h2>
+                <div class="quiz-container">
+                    <div id="quiz-start">
+                        <i class="fas fa-clipboard-check" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3>Apakah kamu siap untuk menguji pengetahuanmu?</h3>
+                        <p style="margin: 1rem 0;">Jawab 30 pertanyaan pilihan ganda tentang Produksi Berkelanjutan, Distribusi Hijau, dan Konsumsi Ramah Lingkungan.</p>
+                        <button class="btn btn-primary" id="start-btn">Mulai Kuis</button>
+                    </div>
+                    <div id="quiz-question">
+                        <div class="quiz-header">
+                            <span id="question-number">Pertanyaan 1 dari 10</span>
+                            <span id="score-display">Skor: 0</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                        <div class="question-text" id="question-text"></div>
+                        <div class="option-grid" id="option-grid"></div>
+                        <div class="quiz-controls">
+                            <button class="btn btn-primary" id="next-btn">Lanjut</button>
+                        </div>
+                    </div>
+                    <div id="quiz-results">
+                        <i class="fas fa-trophy" style="font-size: 4rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <h3>Kuis Selesai!</h3>
+                        <p style="font-size: 1.5rem; margin: 1rem 0;">Skor Akhir Kamu: <span id="final-score">0</span> / 100</p>
+                        <p id="result-message"></p>
+                        <button class="btn btn-primary" id="restart-btn">Ulangi Kuis</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<section id="referensi" style="background: var(--gradient-light); position: relative; padding: 5rem 0; background-image: radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Daftar Pustaka</h2>
+        
+        <div style="background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 2.5rem; border: 1px solid rgba(0,0,0,0.05);">
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Across logistic. (2023, December 15). <em>Environmental Logistics or Green Logistics: What is it and its Benefits?</em> <a href="https://acrosslogistics.com/blog/en/green-logistic" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://acrosslogistics.com/blog/en/green-logistic</a>.
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Ade S. (2025, March 7). <em>Tiga Pilar Sustainability: Fondasi Menuju Masa Depan yang Berkelanjutan.</em> <a href="https://nationalgeographic.grid.id/read/134225232/tiga-pilar-sustainability-fondasi-menuju-masa-depan-yang-berkelanjutan?page=all" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://nationalgeographic.grid.id/read/134225232/tiga-pilar-sustainability-fondasi-menuju-masa-depan-yang-berkelanjutan?page=all</a>.
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Ariningtyas Prabawati, M. (2022). KONSEP GREEN ECONOMY PADA POLA PRODUKSI DAN KONSUMSI SEBAGAI SUSTAINABLE DEVELOPMENT GOALS (SDGs) BERKUALITAS BERBASIS EKOLOGI. <em>Jurnal Sains Edukatika Indonesia (JSEI)</em>, 4(1), 36–42.
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Cinta Rahmi, Aep Saefullah, Syarif Hidayatullah, Rasmawati AR, Adhy Firdaus, Joned Ceilandra Saksana, Muhammad Arief Noor, Hilda Fariha, Nur Aisyah, Nabila Akmas, & Ibah Misbah. (2021). Gerakan Penyuluhan Penggunaan Pestisida Pada Kelompok Wanita Tani (KWT) Garuda Di Cipayung Ciputat. <em>SAFARI: Jurnal Pengabdian Masyarakat Indonesia</em>, 1(2), 64–76. <a href="https://doi.org/10.56910/safari.v1i2.1599" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://doi.org/10.56910/safari.v1i2.1599</a>
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Ertmanska, K. (2021). Sustainable Consumption Among Youth Consumers. <em>EUROPEAN RESEARCH STUDIES JOURNAL</em>, XXIV(Special Issue 3), 203–219. <a href="https://doi.org/10.35808/ersj/2423" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://doi.org/10.35808/ersj/2423</a>
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Jumady, E., Fajriah, Y., Studi Manajemen, P., & Tinggi Ilmu Ekonomi Makassar Bongaya, S. (2020). GREEN SUPPLY CHAIN MANAGEMENT: MEDIASI DAYA SAING DAN KINERJA PERUSAHAAN MANUFAKTUR. <em>In Jurnal Ilmiah Teknik Industri</em> (Vol. 8, Issue 1).
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Konsep Dasar Ekonomi Pendekatan Nilai-Nilai Eco-Culture. (n.d.).
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Pengabdian Magister Pendidikan IPA, J., Laelatul Kodrianingsih, W., Eliana, N., Imantunang, A., Rizqi Julianti, N., Hidayati, N., Hutami, S., Ismiyahyi, N., Khairah, N., Rahmadayanti Rabbani, A., & Widyadhari, A. (2023). Budidaya Maggot untuk Penanganan Sampah Organik dan Menciptakan Peluang Usaha. <a href="https://doi.org/10.29303/jpmpi.v6i1.3146" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://doi.org/10.29303/jpmpi.v6i1.3146</a>
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Pranatasari, F. D., Kristanto, A. T., Wardhani, A. M. N., Kurniawati, L., & Adinata, P. V. (2024). Adopsi pola sustainable consumption awareness sebagai realisasi ekologi integral bagi our common home dalam perbedaan perspektif antar generasi. <em>Entrepreneurship Bisnis Manajemen Akuntansi (E-BISMA)</em>, 322–339. <a href="https://doi.org/10.37631/ebisma.v5i2.1205" target="_blank" style="color: var(--primary-color); word-break: break-all;">https://doi.org/10.37631/ebisma.v5i2.1205</a>
+                </li>
+
+                <li style="margin-bottom: 1.2rem; text-align: justify; padding-left: 2rem; text-indent: -2rem;">
+                    Sains, J., Lingkungan, T., Wahyu, B., Ika, R., Putra, H., & Ratnawati, D. R. (n.d.). PEMBUATAN PUPUK ORGANIK CAIR DARI LIMBAH BUAH DENGAN PENAMBAHAN BIOAKTIVATOR EM4.
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 EcoLearn</p>
+        </div>
+    </footer>
+    <script>
+        // --- MODAL & TAB LOGIC ---
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            const firstTabBtn = document.querySelector(`#${modalId} .tab-btn`);
+            const firstTabContent = document.querySelector(`#${modalId} .tab-content`);
+            if(firstTabBtn && firstTabContent) {
+                document.querySelectorAll(`#${modalId} .tab-btn`).forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll(`#${modalId} .tab-content`).forEach(content => content.classList.remove('active'));
+                firstTabBtn.classList.add('active');
+                firstTabContent.classList.add('active');
+            }
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        function showTab(evt, tabName) {
+            const modalBody = evt.target.closest('.modal-body');
+            modalBody.querySelectorAll('.tab-content').forEach(tabContent => {
+                tabContent.classList.remove('active');
+            });
+            modalBody.querySelectorAll('.tab-btn').forEach(tabBtn => {
+                tabBtn.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        // --- EVENT LISTENER SAAT DOKUMEN SIAP ---
+        document.addEventListener('DOMContentLoaded', () => {
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            }
+            // --- ANIMASI SAAT SCROLL (INTERSECTION OBSERVER) ---
+            const hiddenElements = document.querySelectorAll('.hidden');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            hiddenElements.forEach(el => observer.observe(el));
+            // --- MOUSE TRACKING EFFECT ---
+            const heroSection = document.getElementById('beranda');
+            const mouseTrail = document.createElement('div');
+            mouseTrail.classList.add('mouse-trail');
+            document.body.appendChild(mouseTrail);
+            heroSection.addEventListener('mousemove', (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                mouseTrail.style.left = x + 'px';
+                mouseTrail.style.top = y + 'px';
+                const shapes = document.querySelectorAll('.shape');
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.01;
+                    const xPos = (window.innerWidth - x) * speed;
+                    const yPos = (window.innerHeight - y) * speed;
+                    shape.style.transform = `translate(${xPos}px, ${yPos}px)`;
+                });
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                mouseTrail.style.opacity = '0';
+            });
+            heroSection.addEventListener('mouseenter', () => {
+                mouseTrail.style.opacity = '1';
+            });
+            // --- TYPING EFFECT FOR HERO TITLE ---
+            const heroTitle = document.querySelector('.hero-text h1');
+            const text = heroTitle.innerHTML;
+            heroTitle.innerHTML = '';
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    heroTitle.innerHTML = text.substring(0, i+1);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            }
+            setTimeout(typeWriter, 500);
+            // --- LOGIKA KUIS ---
+            const quizData = [
+    { 
+        question: "Sebuah pabrik tekstil mengklaim telah menerapkan produksi berkelanjutan, tetapi data menunjukkan penggunaan air meningkat 40% dalam 1 tahun. Evaluasi klaim tersebut!", 
+        options: ["Pabrik benar karena produksi juga meningkat", "Pabrik tidak konsisten karena penggunaan air harusnya turun", "Pabrik benar karena limbah tidak bertambah", "Pabrik benar karena kualitas produk meningkat", "Pabrik tidak benar karena tenaga kerja berkurang"], 
+        answer: "Pabrik tidak konsisten karena penggunaan air harusnya turun" 
+    },
+    { 
+        question: "Jika sebuah kota ingin mengurangi volume sampah 30% dalam 3 tahun, strategi paling berkelanjutan adalah…", 
+        options: ["Mengembangkan sistem daur ulang terpadu", "Meningkatkan pembakaran sampah", "Menambah jumlah TPA", "Mengirim sampah ke daerah lain", "Mengurangi petugas kebersihan"], 
+        answer: "Mengembangkan sistem daur ulang terpadu" 
+    },
+    { 
+        question: "Jika petani mengganti pola monokultur menjadi agroforestry, dampak jangka panjang yang paling relevan adalah…", 
+        options: ["Penurunan kualitas tanah", "Peningkatan erosi", "Peningkatan keanekaragaman hayati", "Penurunan penyerapan karbon", "Risiko hama semakin besar"], 
+        answer: "Peningkatan keanekaragaman hayati" 
+    },
+    { 
+        question: "Sebuah kelompok tani ingin mengembangkan agroforestry untuk meningkatkan pendapatan dan menjaga lingkungan. Rencana yang paling berkelanjutan adalah…", 
+        options: ["Menanam pohon tinggi yang menutup semua cahaya", "Menggunakan pestisida secara intensif", "Menghilangkan tanaman semusim karena merugikan", "Menggabungkan tanaman kayu, tanaman buah, dan tanaman semusim", "Mengganti semua pohon setiap dua tahun"], 
+        answer: "Menggabungkan tanaman kayu, tanaman buah, dan tanaman semusim" 
+    },
+    { 
+        question: "Sebuah perusahaan memindahkan gudang lebih dekat ke pasar. Dampak terhadap keberlanjutan adalah...", 
+        options: ["Emisi transportasi berkurang", "Biaya pekerja meningkat", "Konsumsi plastik bertambah", "Limbah produksi meningkat", "Tidak ada perubahan signifikan"], 
+        answer: "Emisi transportasi berkurang" 
+    },
+    { 
+        question: "Penduduk membeli sayur dari petani lokal. Perilaku ini termasuk berkelanjutan karena…", 
+        options: ["Harga lebih murah", "Menghemat penggunaan energi", "Melibatkan impor lebih banyak", "Meningkatkan penggunaan kemasan", "Mengurangi kualitas produk"], 
+        answer: "Menghemat penggunaan energi" 
+    },
+    { 
+        question: "Jika pemerintah ingin mendorong green economy, kebijakan yang paling efektif adalah...", 
+        options: ["Meningkatkan pajak energi terbarukan", "Meningkatkan impor plastik", "Melonggarkan aturan pembuangan limbah", "Menambah izin penebangan pohon", "Memberikan insentif untuk industri ramah lingkungan"], 
+        answer: "Memberikan insentif untuk industri ramah lingkungan" 
+    },
+    { 
+        question: "Supermarket Superindo Kota Metro selalu menawarkan kepada konsumen yang berbelanja untuk menggunakan kantong plastik sekali atau kardus jika tidak membawa tas belanja sendiri. Tindakan tersebut…", 
+        options: ["Tidak berkelanjutan karena tetap plastik", "Berkelanjutan karena mengurangi plastik sekali pakai", "Tidak berkelanjutan karena harga tinggi", "Tidak berpengaruh pada lingkungan", "Tidak berkelanjutan karena menambah limbah"], 
+        answer: "Berkelanjutan karena mengurangi plastik sekali pakai" 
+    },
+    { 
+        question: "Jika masyarakat lebih memilih produk murah daripada produk ramah lingkungan, dampak jangka panjangnya adalah…", 
+        options: ["Lingkungan membaik", "Industri ramah lingkungan berkembang", "Pencemaran meningkat", "Sumber daya terjaga", "Konsumsi energi turun"], 
+        answer: "Pencemaran meningkat" 
+    },
+    { 
+        question: "Produk ramah lingkungan terkesan lebih mahal karena proses pembuatannya yang lebih mahal. Perspektif terhadap biaya yang mahal tersebut perlu diubah dengan cara di bawah ini, kecuali...", 
+        options: ["Produk ramah lingkungan dapat digunakan kembali sehingga menghemat biaya dalam jangka panjang", "Mempertimbangkan manfaat jangka panjang bagi lingkungan", "Produk ramah lingkungan seringkali memiliki kualitas yang lebih tahan lama dan mudah diperbaiki", "Beberapa produk ramah lingkungan bebas dari bahan kimia berbahaya sehingga bermanfaat bagi kesehatan", "Menghindari penggunaan produk ramah lingkungan agar lebih hemat"], 
+        answer: "Menghindari penggunaan produk ramah lingkungan agar lebih hemat" 
+    },
+    { 
+        question: "Kegiatan ekonomi dilakukan secara bijak, tanpa mengorbankan kemampuan generasi mendatang disebut dengan…", 
+        options: ["Sustainability living", "Overconsumption", "Resource exploration", "mass production", "economic growth"], 
+        answer: "Sustainability living" 
+    },
+    { 
+        question: "Program bank sampah berhasil mengurangi sampah hingga 20%. Langkah awal yang paling tepat harus dilakukan agar dampaknya meningkat adalah...", 
+        options: ["Menambah jumlah petugas", "Tambahkan partisipasi masyarakat", "Menambah jumlah bank sampah", "Tingkatkan edukasi dan fasilitas", "Melarang pemilahan sampah"], 
+        answer: "Tingkatkan edukasi dan fasilitas" 
+    },
+    { 
+        question: "Manakah yang BUKAN termasuk faktor produksi?", 
+        options: ["Modal", "Tenaga Kerja", "Konsumen", "Sumber Daya Alam", "Kewirausahaan"], 
+        answer: "Konsumen" 
+    },
+    { 
+        question: "Kegiatan menyalurkan barang dari produsen ke tangan konsumen dengan cara yang ramah lingkungan disebut...", 
+        options: ["Promosi Hijau", "Konsumsi Hijau", "Produksi Hijau", "Distribusi Hijau", "Supply Hijau"], 
+        answer: "Distribusi Hijau" 
+    },
+    { 
+        question: "Contoh praktik logistik hijau adalah...", 
+        options: ["Menggunakan kendaraan berbahan bakar fosil", "Menggunakan kemasan plastik sekali pakai", "Mengoptimalkan rute pengiriman untuk mengurangi emisi", "Membuang limbah sembarangan", "Menggunakan banyak konsumsi energi"], 
+        answer: "Mengoptimalkan rute pengiriman untuk mengurangi emisi" 
+    },
+    { 
+        question: "Tujuan utama dari konsumsi berkelanjutan adalah...", 
+        options: ["Memenuhi kebutuhan tanpa mengorbankan kemampuan generasi mendatang", "Menciptakan barang baru sesuai dengan tren masa kini", "Mendapatkan keuntungan yang sebesar-besarnya", "Mengirim barang ke luar negeri untuk memaksimalkan keuntungan", "Menghabiskan barang untuk memperoleh kepuasan yang sebanyak-banyaknya"], 
+        answer: "Memenuhi kebutuhan tanpa mengorbankan kemampuan generasi mendatang" 
+    },
+    { 
+        question: "Contoh kebutuhan primer yang mendukung sustainability living adalah...", 
+        options: ["Beli smartphone baru", "Makanan sehari-hari dari sumber lokal", "Menonton konser musik artis luar negeri", "Liburan ke luar negeri", "Membeli baju sesuai tren terkini"], 
+        answer: "Makanan sehari-hari dari sumber lokal" 
+    },
+    { 
+        question: "Uang, mesin, dan gedung pabrik merupakan contoh dari faktor produksi...", 
+        options: ["Kewirausahaan", "Tanah", "Tenaga Kerja", "Alam", "Modal"], 
+        answer: "Modal" 
+    },
+    { 
+        question: "Seseorang yang memiliki kemampuan menggabungkan semua faktor produksi untuk menciptakan usaha baru disebut...", 
+        options: ["Pekerja", "Wirausahawan", "Pemilik", "Modal", "Distributor"], 
+        answer: "Wirausahawan" 
+    },
+    { 
+        question: "Usaha kecil membuat produk kerajinan dari limbah kayu. Nilai keberlanjutan utamanya adalah…", 
+        options: ["Menaikkan harga kayu", "Mengurangi jumlah pekerja", "Mengurangi limbah industri", "Membuang banyak sisa produksi", "Menambah konsumsi energi"], 
+        answer: "Mengurangi limbah industri" 
+    },
+    { 
+        question: "Kuliner Payungi (Pasar Yosomulyo Pelangi) merupakan salah satu contoh distribusi yang dilakukan antara produsen dengan konsumen dalam rangka mengoptimalkan rute. Hal ini dilakukan agar...", 
+        options: ["Mengurangi emisi karbon", "Limbah berkurang", "Konsumen lebih sehat", "Menambah konsumsi energi", "Tanah membaik"], 
+        answer: "Mengurangi emisi karbon" 
+    },
+    { 
+        question: "Sebuah perusahaan mengurangi ukuran kemasan produk. Hal ini termasuk penerapan prinsip…", 
+        options: ["Reuse", "Recycle", "Reduce", "Rebound", "Replant"], 
+        answer: "Reduce" 
+    },
+    { 
+        question: "Pengusaha memilih bahan baku lokal daripada impor. Dampak keberlanjutan yang paling terasa adalah…", 
+        options: ["Jejak karbon distribusi berkurang", "Produk semakin mahal", "Limbah meningkat", "Produk lebih rendah kualitas", "Produksi terhambat"], 
+        answer: "Jejak karbon distribusi berkurang" 
+    },
+    { 
+        question: "Perusahaan membuat produk dari bahan daur ulang, tetapi kemasannya tetap plastik sekali pakai. Evaluasi tingkat keberlanjutannya...", 
+        options: ["Sangat berkelanjutan", "Tidak berkelanjutan sama sekali", "Sebagian berkelanjutan karena bahan baku ramah lingkungan", "Tidak berpengaruh pada keberlanjutan", "Lebih buruk dari produk biasa"], 
+        answer: "Sebagian berkelanjutan karena bahan baku ramah lingkungan" 
+    },
+    { 
+        question: "Sumber Daya Alam (SDA) dipelihara, diolah dan dimanfaatkan oleh masyarakat untuk keberlanjutan hidup oleh karena itu butuh peran serta masyarakat dalam pelestarian SDA semaksimal mungkin. Sebagai konsumen upaya untuk mewujudkannya adalah dengan cara di bawah ini, kecuali...", 
+        options: ["Membawa tas belanja sendiri saat ke supermarket", "Meningkatkan penggunaan kendaraan pribadi", "Mengolah sampah organik oleh maggot", "Memilah sampah yang bernilai ekonomis", "Membawa tumbler saat bepergian"], 
+        answer: "Meningkatkan penggunaan kendaraan pribadi" 
+    },
+    { 
+        question: "Perhatikan gambar kemasan ramah lingkungan di atas. Untuk UMKM makanan dan minuman, kemasan biodegradable yang paling tepat digunakan agar lebih aman bagi lingkungan adalah…", 
+        options: ["Kemasan plastik berbahan PVC", "Kemasan styrofoam karena ringan", "Kemasan dari kertas Kraft atau bagasse tebu", "Kemasan plastik sekali pakai bermerek", "Kemasan aluminium foil berlapis plastik"], 
+        answer: "Kemasan dari kertas Kraft atau bagasse tebu" 
+    },
+    { 
+        question: "Salah satu keunggulan menggunakan kemasan biodegradable seperti paper cup, bagasse, atau kotak kertas bagi UMKM adalah…", 
+        options: ["Biaya produksi selalu paling murah", "Proses penguraian cepat dan lebih aman bagi lingkungan", "Dapat digunakan berulang kali tanpa batas", "Tidak memerlukan tempat pembuangan", "Lebih tahan panas dibandingkan logam"], 
+        answer: "Proses penguraian cepat dan lebih aman bagi lingkungan" 
+    },
+    { 
+        question: "Saat berbelanja kebutuhan harian, seseorang memilih produk dengan label eco-friendly dan kemasan dapat didaur ulang. Tindakan tersebut merupakan contoh penerapan konsumsi berkelanjutan karena…", 
+        options: ["Produk eco-friendly selalu lebih murah", "Kemasan daur ulang membuat produk lebih cepat laku", "Pilihan tersebut membantu mengurangi dampak lingkungan jangka panjang", "Produk ramah lingkungan tidak membutuhkan proses produksi", "Semua produk ramah lingkungan bebas limbah"], 
+        answer: "Pilihan tersebut membantu mengurangi dampak lingkungan jangka panjang" 
+    },
+    { 
+        question: "Salah satu prinsip konsumsi hijau adalah membeli barang sesuai kebutuhan, bukan keinginan. Dampak paling signifikan dari prinsip ini adalah…", 
+        options: ["Meningkatkan jumlah sampah rumah tangga", "Mengurangi penggunaan energi dalam produksi barang", "Membuat produsen memproduksi lebih banyak barang", "Mendorong masyarakat membeli barang impor", "Meningkatkan konsumsi barang sekali pakai"], 
+        answer: "Mengurangi penggunaan energi dalam produksi barang" 
+    },
+    { 
+        question: "Seorang siswa memilih membawa botol minum isi ulang dibanding membeli air kemasan setiap hari. Langkah tersebut menunjukkan konsumsi berkelanjutan karena…", 
+        options: ["Menghasilkan lebih banyak limbah plastik", "Menambah biaya pengeluaran harian", "Air isi ulang selalu lebih aman daripada air kemasan", "Mengurangi penggunaan plastik sekali pakai", "Botol isi ulang hanya bisa digunakan sekali"], 
+        answer: "Mengurangi penggunaan plastik sekali pakai" 
+    }
+];
+            const startBtn = document.getElementById('start-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const restartBtn = document.getElementById('restart-btn');
+            const quizStart = document.getElementById('quiz-start');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizResults = document.getElementById('quiz-results');
+            const questionText = document.getElementById('question-text');
+            const optionGrid = document.getElementById('option-grid');
+            const questionNumber = document.getElementById('question-number');
+            const scoreDisplay = document.getElementById('score-display');
+            const finalScore = document.getElementById('final-score');
+            const resultMessage = document.getElementById('result-message');
+            const progressBar = document.getElementById('progress-bar');
+            let currentQuestionIndex = 0;
+            let score = 0;
+            startBtn.addEventListener('click', startQuiz);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            function startQuiz() {
+                quizStart.style.display = 'none';
+                quizQuestion.style.display = 'block';
+                currentQuestionIndex = 0;
+                score = 0;
+                scoreDisplay.textContent = `Skor: ${score}`;
+                nextBtn.style.display = 'none';
+                progressBar.style.width = '0%';
+                showQuestion();
+            }
+            function showQuestion() {
+                resetState();
+                const currentQuestion = quizData[currentQuestionIndex];
+                questionNumber.textContent = `Pertanyaan ${currentQuestionIndex + 1} dari ${quizData.length}`;
+                questionText.textContent = currentQuestion.question;
+                progressBar.style.width = `${((currentQuestionIndex) / quizData.length) * 100}%`;
+                const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+                shuffledOptions.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.classList.add('option-btn');
+                    button.textContent = option;
+                    button.style.animationDelay = `${index * 0.1}s`;
+                    button.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    button.addEventListener('click', () => selectAnswer(button));
+                    optionGrid.appendChild(button);
+                });
+            }
+            function resetState() {
+                nextBtn.style.display = 'none';
+                while (optionGrid.firstChild) {
+                    optionGrid.removeChild(optionGrid.firstChild);
+                }
+            }
+            function selectAnswer(selectedButton) {
+                const correctAnswer = quizData[currentQuestionIndex].answer;
+                const isCorrect = selectedButton.textContent === correctAnswer;
+                Array.from(optionGrid.children).forEach(button => {
+                    button.disabled = true;
+                    if (button.textContent === correctAnswer) {
+                        button.classList.add('correct');
+                    } else if (button === selectedButton && !isCorrect) {
+                        button.classList.add('incorrect');
+                    }
+                });
+                if (isCorrect) {
+            score++;
+            const currentPercentage = Math.round((score / quizData.length) * 100); 
+            scoreDisplay.textContent = `Skor: ${currentPercentage}`;
+        }
+                nextBtn.style.display = 'block';
+            }
+            function showNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) {
+                    showQuestion();
+                } else {
+                    showResults();
+                }
+            }
+            function showResults() {
+        quizQuestion.style.display = 'none';
+        quizResults.style.display = 'block';
+        
+        // Hitung nilai akhir dalam skala 100
+        const finalPercentage = Math.round((score / quizData.length) * 100);
+        finalScore.textContent = finalPercentage;
+        
+        let message = '';
+        // Ubah variabel pengecekan di bawah ini menggunakan finalPercentage, bukan score
+        if (finalPercentage >= 90) {
+            message = "Luar biasa! Kamu sudah menguasai materi ekonomi berkelanjutan dengan sangat baik! 🎉";
+        } else if (finalPercentage >= 70) {
+            message = "Bagus! Pemahaman kamu tentang ekonomi berkelanjutan sudah cukup baik. Tingkatkan lagi! 👍";
+        } else if (finalPercentage >= 50) {
+            message = "Cukup baik. Ada beberapa materi tentang sustainability living yang perlu kamu pelajari lagi. 💪";
+        } else {
+            message = "Jangan menyerah! Coba baca kembali materinya dan ulangi kuis ini. 📚";
+        }
+        resultMessage.textContent = message;
+    }
+            function restartQuiz() {
+                quizResults.style.display = 'none';
+                quizStart.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
